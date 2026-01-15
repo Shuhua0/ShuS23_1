@@ -413,5 +413,24 @@ function setBoard(n) { currentBoard = n; placedItems = []; renderBoard(); render
 function selectCategory(c) { currentCategory = c; renderPalette(); }
 function clearBoard() { if(confirm("초기화 하시겠습니까?")) { placedItems = []; renderBoard(); renderEffects(); } }
 </script>
+<script>
+  // 1. 마우스 오른쪽 클릭 방지
+  document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+  });
+
+  // 2. 단축키 차단 (F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U 등)
+  document.onkeydown = function(e) {
+    if (e.keyCode == 123) { // F12
+      return false;
+    }
+    if (e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) {
+      return false;
+    }
+    if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { // 소스보기 단축키
+      return false;
+    }
+  };
+</script>
 </body>
 </html>
